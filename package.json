@@ -1,0 +1,26 @@
+{
+  "name": "ts-bank",
+  "version": "0.0.1",
+  "description": "Local terminal banking like it's 1979",
+  "main": "build/index.ts",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LilithTundrus/ts-bank.git"
+  },
+  "keywords": [
+    "ts",
+    "bank",
+    "vintage",
+    "banking",
+    "educational"
+  ],
+  "author": "Lilith Tundrus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LilithTundrus/ts-bank/issues"
+  },
+  "homepage": "https://github.com/LilithTundrus/ts-bank#readme"
+}
