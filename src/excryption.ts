@@ -5,8 +5,6 @@
 
 // Node/NPM requires and imports
 import crypto from 'crypto';
-import fs from 'fs';
-
 
 // Nodejs encryption with CTR
 let algorithm = 'aes-256-ctr';
