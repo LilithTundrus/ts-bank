@@ -9,7 +9,7 @@ import { login } from './login';
 function main() {
     console.log(chalk.greenBright('TS-Bank Client Starting...'));
 
-    login()
+    login();
     return;
 }
 
