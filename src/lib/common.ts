@@ -9,7 +9,7 @@ import fs from 'fs';
 /** Read the config file for the project
  * @returns {string}
  */
-function readConfigFile(): string {
+export function readConfigFile(): string {
     if (fs.existsSync('../config.json')) {
         let rawConfigOptions = fs.readFileSync('../config.json');
         return rawConfigOptions.toString();
@@ -20,11 +20,25 @@ function readConfigFile(): string {
     }
 }
 
-/** Parse the config JSON from the string from the `readConfigFile()` function
+/** Write the encrypted config file to disk
+ * @param {string} encryptedJSONString
+ * @returns
+ */
+export function writeConfigFile(encryptedJSONString: string) {
+    if (fs.existsSync('../config.json')) {
+        fs.writeFileSync('../config.json', encryptedJSONString);
+    } else {
+        console.log('Error: Could not find config file (../config.json');
+        // Exit on this error, since the file is needed
+        return process.exit(1);
+    }
+}
+
+/** Parse the config JSON from a decrypted string
  * @param {string} fileString
  * @returns {object}
  */
-function parseCondigJSONFromString(fileString: string): any {
+export function parseCondigJSONFromString(fileString: string): any {
     // Try to parse the contents
     try {
         return JSON.parse(fileString);
