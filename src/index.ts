@@ -7,7 +7,8 @@ import { login } from './login';
 
 // Main function, where the user is presented with the initial login screen
 function main() {
-    console.log(chalk.greenBright('TS-Bank Client Starting...'));
+    // This is assuming an 80 x 25 terminal
+    console.log(chalk.cyanBright('\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▓ Welcome to TS-Bank ▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n'));
 
     login();
     return;
