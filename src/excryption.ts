@@ -11,7 +11,6 @@ let algorithm = 'aes-256-ctr';
 // TODO: Find a good way to store the password
 let password = 'd6F3Efeq';
 
-
 /** Encrypt a piece of text and get the result
  * @export
  * @param {string} text The text to encrypt
