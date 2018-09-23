@@ -27,13 +27,20 @@ let decryptedManifest = decrypt(userManifest);
 
 export function login() {
     // Start the login process
+    console.log('\nPlease log in.\n');
     return getCredentials();
 }
 
 function getCredentials() {
     // Inquirer prompt
-    inquirer.prompt({ type: 'input', message: 'User:', name: 'user' })
-        .then((result) => {
-            console.log(result)
+    inquirer.prompt({ type: 'input', message: 'User:', name: 'user', prefix: '>' })
+        .then((result: any) => {
+            // Handle every scenario
+            if (result.user === '') {
+                return getCredentials();
+            }
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
         })
 }
