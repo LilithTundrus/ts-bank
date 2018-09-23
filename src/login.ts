@@ -7,7 +7,7 @@ import { readConfigFile, parseCondigJSONFromString } from './lib/common';
 import { encrypt, decrypt } from './excryption';
 import * as inquirer from 'inquirer';
 
-// First, get the config file
+// Get the config file
 const rawConfig = readConfigFile();
 const parsedConfig = parseCondigJSONFromString(rawConfig);
 
@@ -17,11 +17,10 @@ const userManifest = fs.readFileSync(parsedConfig.userManifestLocation).toString
 // Decrypt the manifest
 let decryptedManifest = decrypt(userManifest);
 
+let parsedManifest = JSON.parse(decryptedManifest);
+
 
 // This file contains all of the login/authorization methods for ts-bank
-
-
-// Functions for reading the login file
 
 // The manifest for logins is loosely encrypted because this is simulating a 70's experience
 
@@ -37,10 +36,35 @@ function getCredentials() {
         .then((result: any) => {
             // Handle every scenario
             if (result.user === '') {
+                // Re-prompt the user
                 return getCredentials();
+            } else {
+                // Verify their username exists
+                let userExists = checkIfUserExists(result.user);
+                if (userExists == false) {
+                    console.log(`\nUser ${result.user} does not exist or has been disabled. Please try again`);
+                    // Re-prompt the user
+                    return getCredentials();
+                } else {
+                    // 
+                    console.log('AAAAAA')
+                }
             }
         })
         .catch((err) => {
             console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
         })
+}
+
+function checkIfUserExists(userName: string) {
+    let user = parsedManifest.find((entry) => {
+        return entry.user === userName;
+    });
+    console.log(user)
+
+    if (user !== undefined) {
+        return true;
+    } else {
+        return false;
+    }
 }
