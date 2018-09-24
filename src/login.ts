@@ -27,12 +27,17 @@ let parsedManifest = JSON.parse(decryptedManifest);
 export function login() {
     // Start the login process
     console.log('\nPlease log in.\n');
-    return getCredentials();
+    return getCredentials().then(() => {
+
+    })
+        .catch((err) => {
+            console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
+        })
 }
 
 function getCredentials() {
     // Inquirer prompt
-    inquirer.prompt({ type: 'input', message: 'User:', name: 'user', prefix: '>' })
+    return inquirer.prompt({ type: 'input', message: 'User:', name: 'user', prefix: '>' })
         .then((result: any) => {
             // Handle every scenario
             if (result.user === '') {
@@ -46,13 +51,10 @@ function getCredentials() {
                     // Re-prompt the user
                     return getCredentials();
                 } else {
-                    // 
-                    console.log('AAAAAA')
+                    // Show the password prompt
+                    return;
                 }
             }
-        })
-        .catch((err) => {
-            console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
         })
 }
 
@@ -60,11 +62,16 @@ function checkIfUserExists(userName: string) {
     let user = parsedManifest.find((entry) => {
         return entry.user === userName;
     });
-    console.log(user)
 
     if (user !== undefined) {
         return true;
     } else {
         return false;
     }
+}
+
+function getUserInfoByName(userName: string) {
+    return parsedManifest.find((entry) => {
+        return entry.user === userName;
+    });
 }
