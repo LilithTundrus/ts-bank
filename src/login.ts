@@ -27,34 +27,43 @@ let parsedManifest = JSON.parse(decryptedManifest);
 export function login() {
     // Start the login process
     console.log('\nPlease log in.\n');
-    return getCredentials().then(() => {
-
+    return getUserName().then((userData) => {
+        console.log(userData)
+        return getPassword(userData);
     })
         .catch((err) => {
             console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
         })
 }
 
-function getCredentials() {
+function getUserName() {
     // Inquirer prompt
     return inquirer.prompt({ type: 'input', message: 'User:', name: 'user', prefix: '>' })
         .then((result: any) => {
             // Handle every scenario
             if (result.user === '') {
                 // Re-prompt the user
-                return getCredentials();
+                return getUserName();
             } else {
                 // Verify their username exists
                 let userExists = checkIfUserExists(result.user);
                 if (userExists == false) {
                     console.log(`\nUser ${result.user} does not exist or has been disabled. Please try again`);
                     // Re-prompt the user
-                    return getCredentials();
+                    return getUserName();
                 } else {
                     // Show the password prompt
-                    return;
+                    return getUserInfoByName(result.user);
                 }
             }
+        })
+}
+
+function getPassword(userData: any) {
+    // Inquirer prompt
+    return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
+        .then((result: any) => {
+            // Handle every scenario
         })
 }
 
