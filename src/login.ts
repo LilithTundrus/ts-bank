@@ -20,6 +20,7 @@ let decryptedManifest = decrypt(userManifest);
 let parsedManifest = JSON.parse(decryptedManifest);
 
 // TODO: add typings for user data
+// TODO: this could probably be a class?
 
 // This file contains all of the login/authorization methods for ts-bank
 
@@ -71,21 +72,6 @@ function getUserName() {
         })
 }
 
-// function getPassword(userData: any) {
-//     // Inquirer prompt
-//     return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
-//         .then((result: any) => {
-//             // Handle every scenario
-//             if (result.password == userData.password) {
-//                 console.log('Yay!')
-//             } else {
-//                 // Log an invalid password and exit
-//                 console.log('\nInvalid Password, please log in again.');
-//                 return process.exit(0)
-//             }
-//         })
-// }
-
 function getPassword() {
     // Inquirer prompt
     return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
@@ -94,6 +80,11 @@ function getPassword() {
         })
 }
 
+/** Validate a user's password is correct
+ * @param {*} userData
+ * @param {string} password
+ * @returns
+ */
 function validatePassword(userData: any, password: string) {
     if (userData.password === password) {
         return true;
@@ -102,6 +93,10 @@ function validatePassword(userData: any, password: string) {
     }
 }
 
+/** Check if a user exists in the global manifest
+ * @param {string} userName
+ * @returns
+ */
 function checkIfUserExists(userName: string) {
     let user = parsedManifest.find((entry) => {
         return entry.user === userName;
@@ -114,6 +109,10 @@ function checkIfUserExists(userName: string) {
     }
 }
 
+/** Get a user's data by their userName
+ * @param {string} userName
+ * @returns
+ */
 function getUserInfoByName(userName: string) {
     return parsedManifest.find((entry) => {
         return entry.user === userName;
