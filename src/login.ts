@@ -64,6 +64,13 @@ function getPassword(userData: any) {
     return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
         .then((result: any) => {
             // Handle every scenario
+            if (result.password == userData.password) {
+                console.log('Yay!')
+            } else {
+                // Log an invalid password and exit
+                console.log('\nInvalid Password, please log in again.');
+                return process.exit(0)
+            }
         })
 }
 
