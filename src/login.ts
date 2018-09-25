@@ -19,6 +19,7 @@ let decryptedManifest = decrypt(userManifest);
 
 let parsedManifest = JSON.parse(decryptedManifest);
 
+// TODO: add typings for user data
 
 // This file contains all of the login/authorization methods for ts-bank
 
@@ -28,8 +29,19 @@ export function login() {
     // Start the login process
     console.log('\nPlease log in.\n');
     return getUserName().then((userData) => {
-        console.log(userData)
-        return getPassword(userData);
+        return getPassword().then((result) => {
+            // Validate the password
+            let passwordIsValid = validatePassword(userData, result);
+
+            if (passwordIsValid) {
+                // Complete the login process
+                return userData;
+            } else {
+                // Log an invalid password and exit
+                console.log('\nInvalid Password, please try again.');
+                return process.exit(0);
+            }
+        })
     })
         .catch((err) => {
             console.log(`Error: ${err}\n\nPlease contact a system administrator.`);
@@ -59,19 +71,35 @@ function getUserName() {
         })
 }
 
-function getPassword(userData: any) {
+// function getPassword(userData: any) {
+//     // Inquirer prompt
+//     return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
+//         .then((result: any) => {
+//             // Handle every scenario
+//             if (result.password == userData.password) {
+//                 console.log('Yay!')
+//             } else {
+//                 // Log an invalid password and exit
+//                 console.log('\nInvalid Password, please log in again.');
+//                 return process.exit(0)
+//             }
+//         })
+// }
+
+function getPassword() {
     // Inquirer prompt
     return inquirer.prompt({ type: 'password', message: 'Password:', name: 'password', prefix: '>' })
         .then((result: any) => {
-            // Handle every scenario
-            if (result.password == userData.password) {
-                console.log('Yay!')
-            } else {
-                // Log an invalid password and exit
-                console.log('\nInvalid Password, please log in again.');
-                return process.exit(0)
-            }
+            return result.password;
         })
+}
+
+function validatePassword(userData: any, password: string) {
+    if (userData.password === password) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkIfUserExists(userName: string) {
