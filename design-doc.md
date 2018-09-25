@@ -34,3 +34,11 @@ The main idea of this project is to simulate a entire banking system (user and a
 # Architecture Overview
 
 This will start with creating a login/management system before any of the 'business' logic is put in place, then the 'teller' experience can be implemented
+
+
+
+# Milestones
+
+- Login Screen Working
+- Basic Teller interface working
+- Admin features working (adding/removing users)
