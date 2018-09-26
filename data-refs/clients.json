@@ -1,0 +1,32 @@
+[
+    {
+        "firstName": "client's first name",
+        "lastName": "client's last name",
+        "address": {
+            "street": "street name with house number",
+            "city": "city",
+            "state": "state",
+            "zipcode": "zipcode of address",
+            "extra": "any extra address portion"
+        },
+        "accounts": [
+            {
+                "type": "account type (savings, checking, etc.)",
+                "balanceString": "$xxx.xx value",
+                "balanceRaw": "numerical value"
+            }
+        ],
+        "loans": [
+            {
+                "name": "loan name",
+                "ammountString": "$xxx.xx value",
+                "ammountRaw": "numerical value",
+                "dueString": "$xxx.xx value",
+                "dueRaw": "numerical value",
+                "monthlypaymentString": "$xxx.xx value",
+                "monthlyPaymentRaw": "$xxx.xx value",
+                "paymentFrequency": "monthly/etc."
+            }
+        ]
+    }
+]
