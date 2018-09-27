@@ -3,6 +3,8 @@
         "firstName": "client's first name",
         "lastName": "client's last name",
         "ID": "1234",
+        "createdDate": "dd/mm/yyyy",
+        "interestRate": "percentage",
         "address": {
             "street": "street name with house number",
             "city": "city",
@@ -13,6 +15,7 @@
         "accounts": [
             {
                 "type": "account type (savings, checking, etc.)",
+                "accountID": "11234",
                 "balanceString": "$xxx.xx value",
                 "balanceRaw": "numerical value"
             }
@@ -20,6 +23,7 @@
         "loans": [
             {
                 "name": "loan name",
+                "loanID": "11234",
                 "ammountString": "$xxx.xx value",
                 "ammountRaw": "numerical value",
                 "dueString": "$xxx.xx value",
