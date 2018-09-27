@@ -10,3 +10,23 @@ import fs from 'fs';
 // Each time data is changed, make sure that EVERYTHING knows about it
 
 // User data is encrypted!
+
+function addClient(clientData) {
+
+}
+
+function updateClientInfo(newClientData) {
+
+}
+
+function getClientDataByID(clientID) {
+
+}
+
+function addClientAccount(accountObj) {
+
+}
+
+function removeClientAccount(accountID) {
+    
+}
