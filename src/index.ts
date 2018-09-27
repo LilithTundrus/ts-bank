@@ -5,6 +5,10 @@
 import chalk from 'chalk';
 import { login } from './login';
 
+// TODO: The main thing that needs to be done is to keep track of time for payments
+// and when accounts are due for payment
+// TODO: This needs to go from a run-once script to a client/server script
+
 // Main function, where the user is presented with the initial login screen
 function main() {
     // This is assuming an 80 x 25 terminal
