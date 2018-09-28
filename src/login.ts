@@ -3,16 +3,12 @@
 
 // Node/NPM requires and imports
 import fs from 'fs';
-import { readConfigFile, parseCondigJSONFromString } from './lib/common';
+import { userManifestLocation } from './config';
 import { encrypt, decrypt } from './excryption';
 import * as inquirer from 'inquirer';
 
-// Get the config file
-const rawConfig = readConfigFile();
-const parsedConfig = parseCondigJSONFromString(rawConfig);
-
 // The config file has the directory for the user manifest
-const userManifest = fs.readFileSync(parsedConfig.userManifestLocation).toString();
+const userManifest = fs.readFileSync(userManifestLocation).toString();
 
 // Decrypt the manifest
 let decryptedManifest = decrypt(userManifest);
