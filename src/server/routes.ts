@@ -5,6 +5,7 @@ import { login } from './StorageController';
 
 export function route(app) {
 
+    // Testing function (make sure the server is running okay)
     app.route('/test')
     .get((req, res) => {
         res.send('200 OK')

@@ -9,10 +9,13 @@ import { login } from './login';
 // and when accounts are due for payment
 // TODO: This needs to go from a run-once script to a client/server script
 
+// NOTE: This program relies on a server to be run locally on a configured port
+// Optionally, this can be run remotely (but this is emulating a 70's style)
+
 // Main function, where the user is presented with the initial login screen
 function main() {
     // This is assuming an 80 x 25 terminal
-    process.stdout.write("\u001b[2J\u001b[0;0H");
+    process.stdout.write('\u001b[2J\u001b[0;0H');
     console.log(chalk.cyanBright('\n░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▓ WELCOME TO TS-BANK ▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n'));
 
     // Log the user in

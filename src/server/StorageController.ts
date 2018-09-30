@@ -28,9 +28,18 @@ export function addClientAccount(accountObj) {
 }
 
 export function removeClientAccount(accountID) {
-    
+
 }
 
-export function login(test) {
-    console.log(test)
+// This function handles authenticating clients
+export function login(req, res) {
+
+    if (req.body) {
+        res.send('200 OK');
+
+        console.log(req.body)
+
+    } else {
+        res.writeHead(400, 'Request requires a user and password JSON object body')
+    }
 }
