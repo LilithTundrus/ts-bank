@@ -31,15 +31,35 @@ export function removeClientAccount(accountID) {
 
 }
 
-// This function handles authenticating clients
+// This function handles authenticating clients (NOT SECURE)
 export function login(req, res) {
 
-    if (req.body) {
-        res.send('200 OK');
+    if (req.body && req.body.length < 0) {
+        // res.send('200 OK');
 
         console.log(req.body)
 
+        let body;
+
+        // Make sure the body is JSON
+        try {
+            body = JSON.parse(req.body);
+        } catch (e) {
+            res.status(400).end();
+            res.send();
+            return;
+        }
+
+        // Make sure the body matches the format
+        if (!body.user || !body.password) {
+            res.status(400).end();
+            res.send();
+            return;
+        }
+
     } else {
-        res.writeHead(400, 'Request requires a user and password JSON object body')
+        res.status(400).end();
+        res.send();
+        return;
     }
 }
