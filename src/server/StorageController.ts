@@ -33,33 +33,29 @@ export function removeClientAccount(accountID) {
 
 // This function handles authenticating clients (NOT SECURE)
 export function login(req, res) {
+    let validLogin = validateLoginRequest(req, res);
 
-    if (req.body && req.body.length < 0) {
-        // res.send('200 OK');
+    // Match the username/password to the DB
+}
 
-        console.log(req.body)
 
-        let body;
-
-        // Make sure the body is JSON
-        try {
-            body = JSON.parse(req.body);
-        } catch (e) {
-            res.status(400).end();
-            res.send();
-            return;
-        }
-
+// Validates that a request is in the right format
+function validateLoginRequest(req, res): boolean {
+    if (req.body) {
         // Make sure the body matches the format
-        if (!body.user || !body.password) {
+        if (!req.body.user || !req.body.password) {
             res.status(400).end();
             res.send();
-            return;
+            return false;
+        } else {
+            // res.send('200 OK');
+            return true;
         }
 
     } else {
+        console.log('Got a login request with no body')
         res.status(400).end();
         res.send();
-        return;
+        return false;
     }
 }
